@@ -24,23 +24,27 @@
 <h2>🔥 Contatos</h2>
 
 
-<div class="contato" data-nome="Joao">
-🟢 João
+<div class="contato" data-nome="Joao" data-status="online">
+<span class="avatar online"></span>
+João
 </div>
 
 
-<div class="contato" data-nome="Maria">
-🟡 Maria
+<div class="contato" data-nome="Maria" data-status="ausente">
+<span class="avatar ausente"></span>
+Maria
 </div>
 
 
-<div class="contato" data-nome="Pedro">
-🔴 Pedro
+<div class="contato" data-nome="Pedro" data-status="ocupado">
+<span class="avatar ocupado"></span>
+Pedro
 </div>
 
 
-<div class="contato" data-nome="Ana">
-⚫ Ana
+<div class="contato" data-nome="Ana" data-status="offline">
+<span class="avatar offline"></span>
+Ana
 </div>
 
 
@@ -61,10 +65,11 @@
 
 <select id="status">
 
-<option>🟢 Online</option>
-<option>🔴 Ocupado</option>
-<option>🟡 Ausente</option>
-<option>⚫ Offline</option>
+<option value="online">🟢 Online</option>
+<option value="ocupado">🔴 Ocupado</option>
+<option value="ausente">🟡 Ausente</option>
+<option value="invisivel">⚪ Invisível</option>
+<option value="offline">⚫ Offline</option>
 
 </select>
 
