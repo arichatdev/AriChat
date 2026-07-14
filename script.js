@@ -19,6 +19,9 @@ const nomeUsuario = "Ari";
 let contatoAtual = "Joao";
 let meuStatus = "online";
 
+let ultimaAtividade = {};
+
+
 
 const statusContatos = {
   "Joao": "🟢 Online",
@@ -28,79 +31,127 @@ const statusContatos = {
 };
 
 
-// Trocar contato
+
+// função horário
+
+function horario(){
+
+return new Date().toLocaleTimeString("pt-BR",{
+hour:"2-digit",
+minute:"2-digit"
+});
+
+}
+
+
+
+// mensagem do sistema
+
+function avisoSistema(textoAviso){
+
+const aviso = document.createElement("div");
+
+aviso.className="mensagem";
+
+aviso.innerHTML = `
+${textoAviso}
+<div class="hora">${horario()}</div>
+`;
+
+mensagens.appendChild(aviso);
+
+mensagens.scrollTop = mensagens.scrollHeight;
+
+}
+
+
+
+// entrar no contato
 
 contatos.forEach((contato)=>{
 
-  contato.addEventListener("click",()=>{
-
-    contatoAtual = contato.dataset.nome;
-
-    nomeContato.innerHTML = "💬 " + contato.innerText.trim();
+contato.addEventListener("click",()=>{
 
 
-    if(meuStatus === "invisivel"){
+if(contatoAtual !== contato.dataset.nome){
 
-      digitando.innerHTML = "⚫ Offline";
+ultimaAtividade[contatoAtual] = horario();
 
-    } else {
+avisoSistema(
+"👋 " + contatoAtual + " saiu da conversa"
+);
 
-      digitando.innerHTML = statusContatos[contatoAtual];
+}
 
-    }
 
-  });
+contatoAtual = contato.dataset.nome;
+
+
+nomeContato.innerHTML =
+"💬 " + contato.innerText.trim();
+
+
+avisoSistema(
+"🔥 " + contatoAtual + " entrou no AriChat"
+);
+
+
+
+digitando.innerHTML =
+statusContatos[contatoAtual];
+
+});
 
 });
 
 
-// Mudar status
+
+// status
 
 status.addEventListener("change",()=>{
 
-  meuStatus = status.value;
+meuStatus = status.value;
 
 
-  if(meuStatus === "invisivel"){
+if(meuStatus === "invisivel"){
 
-    digitando.innerHTML = "⚪ Seu status: Invisível";
+digitando.innerHTML =
+"⚪ Invisível";
 
-  } else {
+}else{
 
-    digitando.innerHTML =
-    status.options[status.selectedIndex].text;
+digitando.innerHTML =
+status.options[status.selectedIndex].text;
 
-  }
+}
 
 });
 
 
-// Digitando
+
+// digitando
 
 texto.addEventListener("input",()=>{
 
-  if(texto.value.length > 0){
+if(texto.value.length > 0){
 
-    digitando.innerHTML = "✍️ Digitando...";
+digitando.innerHTML =
+"✍️ Digitando...";
 
-  }
+}
 
 });
 
 
-// Enviar mensagem
+
+
+// enviar mensagem
 
 function enviarMensagem(){
 
 const mensagem = texto.value.trim();
 
-if(mensagem === "") return;
-
-
-const hora = new Date().toLocaleTimeString("pt-BR",{
-hour:"2-digit",
-minute:"2-digit"
-});
+if(mensagem==="") return;
 
 
 const nova = document.createElement("div");
@@ -114,7 +165,9 @@ nova.innerHTML = `
 
 ${mensagem}
 
-<div class="hora">${hora}</div>
+<div class="hora">
+${horario()}
+</div>
 
 <div class="visualizado">
 ✔✔ Visualizado
@@ -127,15 +180,15 @@ mensagens.appendChild(nova);
 
 texto.value="";
 
-
 digitando.innerHTML =
 statusContatos[contatoAtual];
-
 
 mensagens.scrollTop =
 mensagens.scrollHeight;
 
+
 }
+
 
 
 enviar.addEventListener("click", enviarMensagem);
@@ -143,7 +196,7 @@ enviar.addEventListener("click", enviarMensagem);
 
 texto.addEventListener("keypress",(e)=>{
 
-if(e.key === "Enter"){
+if(e.key==="Enter"){
 
 enviarMensagem();
 
@@ -152,7 +205,9 @@ enviarMensagem();
 });
 
 
-// Chamar atenção
+
+
+// chamar atenção
 
 chamar.addEventListener("click",()=>{
 
@@ -167,24 +222,19 @@ alert("🔥 Ari chamou sua atenção!");
 });
 
 
-// Abrir emojis
+
+
+// emojis
 
 emojiBotao.addEventListener("click",()=>{
 
-if(emojis.style.display === "block"){
-
-  emojis.style.display = "none";
-
-}else{
-
-  emojis.style.display = "block";
-
-}
+emojis.style.display =
+emojis.style.display === "block"
+? "none"
+: "block";
 
 });
 
-
-// Escolher emoji individual
 
 emojis.querySelectorAll("span").forEach((emoji)=>{
 
