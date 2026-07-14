@@ -10,7 +10,7 @@ body {
 
 .chat {
   width: 90%;
-  max-width: 420px;
+  max-width: 430px;
   background: white;
   border: 3px solid #8b0000;
   border-radius: 15px;
@@ -30,17 +30,14 @@ body {
 }
 
 #status {
-  padding: 6px;
+  padding: 7px;
   border-radius: 8px;
   border: none;
-  font-size: 14px;
 }
 
 #digitando {
-  height: 20px;
   margin-top: 8px;
-  font-size: 13px;
-  font-style: italic;
+  font-size: 14px;
 }
 
 #mensagens {
@@ -87,6 +84,28 @@ button {
   background: #8b0000;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 12px;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5c0000;
+}
+
+#chamar {
+  font-size: 18px;
+}
+
+@keyframes tremer {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.tremendo {
+  animation: tremer 0.4s;
 }
