@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+const nomeContato = document.getElementById("nomeContato");
 const mensagens = document.getElementById("mensagens");
 const texto = document.getElementById("texto");
 const enviar = document.getElementById("enviar");
@@ -27,7 +27,7 @@ contatos.forEach(contato => {
 
     digitando.innerHTML = 
     "💬 Conversando com " + contatoAtual;
-
+nomeContato.innerHTML = "💬" + contatoAtual;
   });
 
 });
