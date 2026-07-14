@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-const nomeContato = document.getElementById("nomeContato");
+
 const mensagens = document.getElementById("mensagens");
 const texto = document.getElementById("texto");
 const enviar = document.getElementById("enviar");
@@ -7,42 +7,48 @@ const chamar = document.getElementById("chamar");
 const digitando = document.getElementById("digitando");
 const status = document.getElementById("status");
 const chat = document.getElementById("chat");
+const nomeContato = document.getElementById("nomeContato");
 
 const contatos = document.querySelectorAll(".contato");
 
+const nome = "Ari";
+
 let contatoAtual = "João";
+
+
 const statusContatos = {
   "João": "🟢 Online",
   "Maria": "🟡 Ausente",
   "Pedro": "🔴 Ocupado",
   "Ana": "⚫ Offline"
 };
-const nome = "Ari";
 
 
-// Escolher contato
+// Trocar contato
 
 contatos.forEach(contato => {
 
   contato.addEventListener("click", () => {
 
-    contatoAtual = contato.innerText.substring(2);
+    contatoAtual = contato.innerText.replace(/🟢|🟡|🔴|⚫/g, "").trim();
 
     mensagens.innerHTML = "";
 
+    nomeContato.innerHTML = "💬 " + contatoAtual;
+
     digitando.innerHTML =
-statusContatos[contatoAtual] + " • " + contatoAtual;
-nomeContato.innerHTML = "💬" + contatoAtual;
+      statusContatos[contatoAtual] || "🟢 Online";
+
   });
 
 });
 
 
-// Status
+// Seu status
 
 status.addEventListener("change", () => {
 
- digitando.innerHTML = status.value;
+  digitando.innerHTML = status.value;
 
 });
 
@@ -51,56 +57,56 @@ status.addEventListener("change", () => {
 
 texto.addEventListener("input", () => {
 
- if(texto.value.length > 0){
+  if(texto.value.length > 0){
 
-  digitando.innerHTML = "✍️ Digitando...";
+    digitando.innerHTML = "✍️ Digitando...";
 
- } else {
+  } else {
 
-  digitando.innerHTML = "🟢 Online";
+    digitando.innerHTML =
+    statusContatos[contatoAtual];
 
- }
+  }
 
 });
 
 
-// Enviar mensagem
+// Enviar
 
 function enviarMensagem(){
 
- const msg = texto.value.trim();
+const mensagem = texto.value.trim();
 
- if(msg === "") return;
-
-
- const hora = new Date().toLocaleTimeString("pt-BR",{
- hour:"2-digit",
- minute:"2-digit"
- });
+if(mensagem === "") return;
 
 
- const nova = document.createElement("div");
-
- nova.className="mensagem";
-
-
- nova.innerHTML = `
- <strong>${nome}</strong><br>
- ${msg}
- <div class="hora">${hora}</div>
- <div class="visualizado">✔✔ Visualizado</div>
- `;
+const hora = new Date().toLocaleTimeString("pt-BR",{
+hour:"2-digit",
+minute:"2-digit"
+});
 
 
- mensagens.appendChild(nova);
+const nova = document.createElement("div");
 
- texto.value="";
-
- digitando.innerHTML =
- "💬 Conversando com " + contatoAtual;
+nova.className="mensagem";
 
 
- mensagens.scrollTop = mensagens.scrollHeight;
+nova.innerHTML = `
+<strong>${nome}</strong><br>
+${mensagem}
+<div class="hora">${hora}</div>
+<div class="visualizado">✔✔ Visualizado</div>
+`;
+
+
+mensagens.appendChild(nova);
+
+texto.value="";
+
+digitando.innerHTML =
+statusContatos[contatoAtual];
+
+mensagens.scrollTop = mensagens.scrollHeight;
 
 }
 
@@ -110,9 +116,9 @@ enviar.addEventListener("click", enviarMensagem);
 
 texto.addEventListener("keypress",(e)=>{
 
- if(e.key==="Enter"){
-  enviarMensagem();
- }
+if(e.key==="Enter"){
+enviarMensagem();
+}
 
 });
 
@@ -121,13 +127,13 @@ texto.addEventListener("keypress",(e)=>{
 
 chamar.addEventListener("click",()=>{
 
- chat.classList.remove("tremendo");
+chat.classList.remove("tremendo");
 
- void chat.offsetWidth;
+void chat.offsetWidth;
 
- chat.classList.add("tremendo");
+chat.classList.add("tremendo");
 
- alert("🔥 Ari chamou sua atenção!");
+alert("🔥 Ari chamou sua atenção!");
 
 });
 
