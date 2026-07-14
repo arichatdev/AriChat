@@ -54,7 +54,7 @@ contatos.forEach((contato)=>{
 });
 
 
-// Status do usuário
+// Mudar status
 
 status.addEventListener("change",()=>{
 
@@ -63,7 +63,7 @@ status.addEventListener("change",()=>{
 
   if(meuStatus === "invisivel"){
 
-    digitando.innerHTML = "⚪ Invisível";
+    digitando.innerHTML = "⚪ Seu status: Invisível";
 
   } else {
 
@@ -105,20 +105,28 @@ minute:"2-digit"
 
 const nova = document.createElement("div");
 
-nova.className = "mensagem";
+nova.className="mensagem";
 
 
 nova.innerHTML = `
+
 <strong>${nomeUsuario}</strong><br>
+
 ${mensagem}
+
 <div class="hora">${hora}</div>
-<div class="visualizado">✔✔ Visualizado</div>
+
+<div class="visualizado">
+✔✔ Visualizado
+</div>
+
 `;
 
 
 mensagens.appendChild(nova);
 
-texto.value = "";
+texto.value="";
+
 
 digitando.innerHTML =
 statusContatos[contatoAtual];
@@ -159,29 +167,34 @@ alert("🔥 Ari chamou sua atenção!");
 });
 
 
-// Emojis
+// Abrir emojis
 
 emojiBotao.addEventListener("click",()=>{
 
 if(emojis.style.display === "block"){
 
- emojis.style.display = "none";
+  emojis.style.display = "none";
 
 }else{
 
- emojis.style.display = "block";
+  emojis.style.display = "block";
 
 }
 
 });
 
 
-emojis.addEventListener("click",(e)=>{
+// Escolher emoji individual
 
-texto.value += e.target.innerText;
+emojis.querySelectorAll("span").forEach((emoji)=>{
+
+emoji.addEventListener("click",()=>{
+
+texto.value += emoji.innerText;
 
 });
 
+});
 
 
 });
