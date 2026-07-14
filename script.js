@@ -11,6 +11,9 @@ const status = document.getElementById("status");
 const contatos = document.querySelectorAll(".contato");
 const nomeContato = document.getElementById("nomeContato");
 
+const emojiBotao = document.getElementById("emoji");
+const emojis = document.getElementById("emojis");
+
 const nomeUsuario = "Ari";
 
 let contatoAtual = "Joao";
@@ -25,7 +28,7 @@ const statusContatos = {
 };
 
 
-// Trocar conversa
+// Trocar contato
 
 contatos.forEach((contato)=>{
 
@@ -35,10 +38,15 @@ contatos.forEach((contato)=>{
 
     nomeContato.innerHTML = "💬 " + contato.innerText.trim();
 
+
     if(meuStatus === "invisivel"){
+
       digitando.innerHTML = "⚫ Offline";
+
     } else {
+
       digitando.innerHTML = statusContatos[contatoAtual];
+
     }
 
   });
@@ -46,16 +54,22 @@ contatos.forEach((contato)=>{
 });
 
 
-// Alterar seu status
+// Status do usuário
 
 status.addEventListener("change",()=>{
 
   meuStatus = status.value;
 
+
   if(meuStatus === "invisivel"){
-    digitando.innerHTML = "⚪ Seu status: Invisível";
+
+    digitando.innerHTML = "⚪ Invisível";
+
   } else {
-    digitando.innerHTML = status.options[status.selectedIndex].text;
+
+    digitando.innerHTML =
+    status.options[status.selectedIndex].text;
+
   }
 
 });
@@ -66,7 +80,9 @@ status.addEventListener("change",()=>{
 texto.addEventListener("input",()=>{
 
   if(texto.value.length > 0){
+
     digitando.innerHTML = "✍️ Digitando...";
+
   }
 
 });
@@ -104,7 +120,12 @@ mensagens.appendChild(nova);
 
 texto.value = "";
 
-mensagens.scrollTop = mensagens.scrollHeight;
+digitando.innerHTML =
+statusContatos[contatoAtual];
+
+
+mensagens.scrollTop =
+mensagens.scrollHeight;
 
 }
 
@@ -115,7 +136,9 @@ enviar.addEventListener("click", enviarMensagem);
 texto.addEventListener("keypress",(e)=>{
 
 if(e.key === "Enter"){
+
 enviarMensagem();
+
 }
 
 });
@@ -134,6 +157,31 @@ chat.classList.add("tremendo");
 alert("🔥 Ari chamou sua atenção!");
 
 });
+
+
+// Emojis
+
+emojiBotao.addEventListener("click",()=>{
+
+if(emojis.style.display === "block"){
+
+ emojis.style.display = "none";
+
+}else{
+
+ emojis.style.display = "block";
+
+}
+
+});
+
+
+emojis.addEventListener("click",(e)=>{
+
+texto.value += e.target.innerText;
+
+});
+
 
 
 });
