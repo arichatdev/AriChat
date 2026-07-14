@@ -62,5 +62,20 @@ if(meuStatus === "invisivel"){
 
 });
 
+// Chamar atenção estilo MSN
 
+const chamar = document.getElementById("chamar");
+const chat = document.getElementById("chat");
+
+chamar.addEventListener("click", () => {
+
+  chat.classList.remove("tremendo");
+
+  void chat.offsetWidth;
+
+  chat.classList.add("tremendo");
+
+  alert("🔥 Ari chamou sua atenção!");
+
+});
 });
