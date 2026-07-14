@@ -13,126 +13,158 @@ const contatos = document.querySelectorAll(".contato");
 
 const nomeUsuario = "Ari";
 
-let contatoAtual = "João";
+let contatoAtual = "Joao";
 
 
 const statusContatos = {
-  Joao: "🟢 Online",
-  Maria: "🟡 Ausente",
-  Pedro: "🔴 Ocupado",
-  Ana: "⚫ Offline"
+  "Joao": "🟢 Online",
+  "Maria": "🟡 Ausente",
+  "Pedro": "🔴 Ocupado",
+  "Ana": "⚫ Offline"
 };
 
 
 // Abrir contato
 
-contatos.forEach((contato) => {
+contatos.forEach((contato)=>{
 
-  contato.addEventListener("click", () => {
+  contato.addEventListener("click",()=>{
 
-    const nome = contato.dataset.nome;
-
-    contatoAtual = nome;
+    contatoAtual = contato.dataset.nome;
 
     mensagens.innerHTML = "";
 
     nomeContato.innerHTML = "💬 " + contatoAtual;
 
-    digitando.innerHTML = statusContatos[contatoAtual];
+    digitando.innerHTML =
+    statusContatos[contatoAtual];
 
   });
 
 });
 
 
-// Status do usuário
 
-status.addEventListener("change", () => {
+// Trocar seu status
 
-  digitando.innerHTML = status.value;
+status.addEventListener("change",()=>{
+
+let escolha = status.value;
+
+
+if(escolha === "invisivel"){
+
+ digitando.innerHTML = "⚪ Invisível";
+
+}else{
+
+ digitando.innerHTML = escolha;
+
+}
+
+
+});
+
+
+
+// Digitação
+
+texto.addEventListener("input",()=>{
+
+
+if(texto.value.length > 0){
+
+ digitando.innerHTML = "✍️ Digitando...";
+
+}else{
+
+ digitando.innerHTML =
+ statusContatos[contatoAtual];
+
+}
+
 
 });
 
-
-// Digitando
-
-texto.addEventListener("input", () => {
-
-  if(texto.value.length > 0){
-
-    digitando.innerHTML = "✍️ Digitando...";
-
-  } else {
-
-    digitando.innerHTML = statusContatos[contatoAtual];
-
-  }
-
-});
 
 
 // Enviar mensagem
 
 function enviarMensagem(){
 
-  const mensagem = texto.value.trim();
+const msg = texto.value.trim();
 
-  if(mensagem === "") return;
-
-
-  const hora = new Date().toLocaleTimeString("pt-BR", {
-    hour:"2-digit",
-    minute:"2-digit"
-  });
+if(msg === "") return;
 
 
-  const novaMensagem = document.createElement("div");
-
-  novaMensagem.className = "mensagem";
-
-
-  novaMensagem.innerHTML = `
-    <strong>${nomeUsuario}</strong><br>
-    ${mensagem}
-    <div class="hora">${hora}</div>
-    <div class="visualizado">✔✔ Visualizado</div>
-  `;
+const hora = new Date().toLocaleTimeString("pt-BR",{
+hour:"2-digit",
+minute:"2-digit"
+});
 
 
-  mensagens.appendChild(novaMensagem);
+const nova = document.createElement("div");
 
-  texto.value = "";
+nova.className="mensagem";
 
-  digitando.innerHTML = statusContatos[contatoAtual];
 
-  mensagens.scrollTop = mensagens.scrollHeight;
+nova.innerHTML=`
+
+<strong>${nomeUsuario}</strong><br>
+
+${msg}
+
+<div class="hora">${hora}</div>
+
+<div class="visualizado">
+✔✔ Visualizado
+</div>
+
+`;
+
+
+mensagens.appendChild(nova);
+
+texto.value="";
+
+
+mensagens.scrollTop =
+mensagens.scrollHeight;
+
 
 }
+
 
 
 enviar.addEventListener("click", enviarMensagem);
 
 
-texto.addEventListener("keypress", (e)=>{
 
-  if(e.key === "Enter"){
-    enviarMensagem();
-  }
+texto.addEventListener("keypress",(e)=>{
+
+if(e.key==="Enter"){
+
+enviarMensagem();
+
+}
 
 });
 
 
-// Chamar atenção MSN
 
-chamar.addEventListener("click", ()=>{
+// Chamar atenção
 
-  chat.classList.remove("tremendo");
+chamar.addEventListener("click",()=>{
 
-  void chat.offsetWidth;
 
-  chat.classList.add("tremendo");
+chat.classList.remove("tremendo");
 
-  alert("🔥 Ari chamou sua atenção!");
+void chat.offsetWidth;
+
+chat.classList.add("tremendo");
+
+
+alert("🔥 Ari chamou sua atenção!");
 
 });
 
