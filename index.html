@@ -3,25 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FireChat</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<div class="chat">
+<div class="chat" id="chat">
 
 <div class="topo">
+
 <h1>🔥 FireChat</h1>
 
 <select id="status">
-<option value="online">🟢 Online</option>
-<option value="ocupado">🔴 Ocupado</option>
-<option value="ausente">🟡 Ausente</option>
-<option value="offline">⚫ Offline</option>
+<option>🟢 Online</option>
+<option>🔴 Ocupado</option>
+<option>🟡 Ausente</option>
+<option>⚫ Offline</option>
 </select>
 
-<div id="digitando"></div>
+<div id="digitando">
+🟢 Online
+</div>
 
 </div>
 
@@ -30,8 +36,20 @@
 
 
 <div class="entrada">
-<input id="texto" placeholder="Digite uma mensagem...">
-<button id="enviar">Enviar</button>
+
+<input 
+id="texto"
+placeholder="Digite uma mensagem..."
+>
+
+<button id="enviar">
+Enviar
+</button>
+
+<button id="chamar">
+📳
+</button>
+
 </div>
 
 
