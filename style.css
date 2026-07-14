@@ -1,54 +1,64 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #202124;
+  background: linear-gradient(#b8f5c8, #4caf70);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .chat {
-  background: white;
   width: 90%;
-  max-width: 400px;
-  border-radius: 15px;
-  padding: 20px;
-  box-sizing: border-box;
+  max-width: 420px;
+  background: white;
+  border: 3px solid #146b35;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #555;
+  overflow: hidden;
 }
 
 h1 {
+  margin: 0;
+  padding: 15px;
+  background: linear-gradient(#35c759, #146b35);
+  color: white;
   text-align: center;
-  margin-top: 0;
+  font-size: 24px;
 }
 
 #mensagens {
   height: 300px;
-  border: 1px solid #ddd;
+  padding: 15px;
+  overflow-y: auto;
+  background: #effff2;
+}
+
+#mensagens p {
+  background: #b9f6c5;
+  border-left: 5px solid #146b35;
   border-radius: 10px;
   padding: 10px;
-  overflow-y: auto;
-  margin-bottom: 15px;
+  margin: 10px 0;
 }
 
 #texto {
-  width: 100%;
+  width: 65%;
   padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+  margin: 10px;
+  border: 2px solid #35c759;
+  border-radius: 8px;
 }
 
 button {
-  width: 100%;
-  padding: 12px;
+  padding: 10px 15px;
+  background: #146b35;
+  color: white;
   border: none;
   border-radius: 8px;
-  background: #d62828;
-  color: white;
-  font-size: 16px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #b71c1c;
+  background: #0d4d25;
 }
