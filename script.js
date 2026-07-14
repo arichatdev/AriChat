@@ -166,7 +166,7 @@ avisoSistema(
 
 digitando.innerHTML =
 statusContatos[contatoAtual];
-
+carregarMensagens(contatoAtual);
 });
 
 });
@@ -245,7 +245,20 @@ ${horario()}
 
 mensagens.appendChild(nova);
 
+
+guardarMensagem(contatoAtual, {
+
+usuario: nomeUsuario,
+
+texto: mensagem,
+
+hora: horario()
+
+});
+
+
 texto.value="";
+
 
 digitando.innerHTML =
 statusContatos[contatoAtual];
