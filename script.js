@@ -11,7 +11,12 @@ const chat = document.getElementById("chat");
 const contatos = document.querySelectorAll(".contato");
 
 let contatoAtual = "João";
-
+const statusContatos = {
+  "João": "🟢 Online",
+  "Maria": "🟡 Ausente",
+  "Pedro": "🔴 Ocupado",
+  "Ana": "⚫ Offline"
+};
 const nome = "Ari";
 
 
@@ -25,8 +30,8 @@ contatos.forEach(contato => {
 
     mensagens.innerHTML = "";
 
-    digitando.innerHTML = 
-    "💬 Conversando com " + contatoAtual;
+    digitando.innerHTML =
+statusContatos[contatoAtual] + " • " + contatoAtual;
 nomeContato.innerHTML = "💬" + contatoAtual;
   });
 
