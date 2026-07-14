@@ -158,15 +158,16 @@ nomeContato.innerHTML =
 "💬 " + contato.innerText.trim();
 
 
+carregarMensagens(contatoAtual);
+
+
 avisoSistema(
 "🔥 " + contatoAtual + " entrou no AriChat"
 );
 
 
-
 digitando.innerHTML =
 statusContatos[contatoAtual];
-carregarMensagens(contatoAtual);
 });
 
 });
