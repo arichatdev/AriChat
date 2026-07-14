@@ -3,84 +3,74 @@ document.addEventListener("DOMContentLoaded", () => {
   const mensagens = document.getElementById("mensagens");
   const texto = document.getElementById("texto");
   const enviar = document.getElementById("enviar");
+  const chamar = document.getElementById("chamar");
   const digitando = document.getElementById("digitando");
   const status = document.getElementById("status");
+  const chat = document.getElementById("chat");
 
   const nome = "Ari";
 
-  // Mostrar status escolhido
+
   status.addEventListener("change", () => {
 
     const escolha = status.value;
 
-    if (escolha === "online") {
-      digitando.innerHTML = "🟢 Online";
-    }
-
-    if (escolha === "ocupado") {
-      digitando.innerHTML = "🔴 Ocupado";
-    }
-
-    if (escolha === "ausente") {
-      digitando.innerHTML = "🟡 Ausente";
-    }
-
-    if (escolha === "offline") {
-      digitando.innerHTML = "⚫ Offline";
-    }
+    digitando.innerHTML = escolha;
 
   });
 
 
-  // Aparece "digitando..."
   texto.addEventListener("input", () => {
 
     if (texto.value.length > 0) {
       digitando.innerHTML = "✍️ Digitando...";
     } else {
-      digitando.innerHTML = "🟢 Online";
+      digitando.innerHTML = status.value;
     }
 
   });
 
 
-  function enviarMensagem() {
+
+  function enviarMensagem(){
 
     const mensagem = texto.value.trim();
 
-    if (mensagem === "") return;
+    if(mensagem === "") return;
 
 
     const agora = new Date();
 
     const hora = agora.toLocaleTimeString("pt-BR", {
-      hour: "2-digit",
-      minute: "2-digit"
+      hour:"2-digit",
+      minute:"2-digit"
     });
 
 
-    const novaMensagem = document.createElement("div");
+    const nova = document.createElement("div");
 
-    novaMensagem.className = "mensagem";
+    nova.className = "mensagem";
 
 
-    novaMensagem.innerHTML = `
-      <strong>${nome}</strong><br>
-      ${mensagem}
-      <div class="hora">${hora}</div>
-      <div class="visualizado">✔✔ Visualizado</div>
+    nova.innerHTML = `
+    <strong>${nome}</strong><br>
+    ${mensagem}
+    <div class="hora">${hora}</div>
+    <div class="visualizado">✔✔ Visualizado</div>
     `;
 
 
-    mensagens.appendChild(novaMensagem);
+    mensagens.appendChild(nova);
 
     texto.value = "";
 
-    digitando.innerHTML = "🟢 Online";
+    digitando.innerHTML = status.value;
+
 
     mensagens.scrollTop = mensagens.scrollHeight;
 
   }
+
 
 
   enviar.addEventListener("click", enviarMensagem);
@@ -91,6 +81,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if(e.key === "Enter"){
       enviarMensagem();
     }
+
+  });
+
+
+
+  chamar.addEventListener("click", ()=>{
+
+    chat.classList.remove("tremendo");
+
+    void chat.offsetWidth;
+
+    chat.classList.add("tremendo");
+
+
+    alert("🔥 Ari chamou sua atenção!");
 
   });
 
