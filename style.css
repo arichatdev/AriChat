@@ -22,6 +22,8 @@ body {
 }
 
 
+/* Lista de contatos */
+
 .contatos {
   width: 180px;
   background: #8b0000;
@@ -32,7 +34,6 @@ body {
 
 .contatos h2 {
   text-align: center;
-  font-size: 18px;
 }
 
 
@@ -42,6 +43,9 @@ body {
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 
@@ -49,6 +53,39 @@ body {
   background: #ff8080;
 }
 
+
+/* Bonequinho de status */
+
+.avatar {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+.avatar.online {
+  background: #00ff00;
+}
+
+
+.avatar.ausente {
+  background: #ffd000;
+}
+
+
+.avatar.ocupado {
+  background: #ff0000;
+}
+
+
+.avatar.offline {
+  background: #555;
+}
+
+
+
+/* Chat */
 
 .chat {
   flex: 1;
@@ -70,7 +107,14 @@ body {
 }
 
 
+#status {
+  padding: 7px;
+  border-radius: 8px;
+}
+
+
 #digitando {
+  margin-top: 8px;
   font-size: 14px;
 }
 
@@ -94,7 +138,6 @@ body {
 
 .hora {
   font-size: 11px;
-  color: #666;
   text-align: right;
 }
 
@@ -130,15 +173,6 @@ button {
 }
 
 
-@keyframes tremer {
-  0% {transform: translateX(0);}
-  25% {transform: translateX(-10px);}
-  50% {transform: translateX(10px);}
-  75% {transform: translateX(-10px);}
-  100% {transform: translateX(0);}
-}
-
-
-.tremendo {
-  animation: tremer .4s;
+button:hover {
+  background: #5c0000;
 }
