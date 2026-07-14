@@ -11,40 +11,41 @@ const nomeContato = document.getElementById("nomeContato");
 
 const contatos = document.querySelectorAll(".contato");
 
-const nome = "Ari";
+const nomeUsuario = "Ari";
 
 let contatoAtual = "João";
 
 
 const statusContatos = {
-  "João": "🟢 Online",
-  "Maria": "🟡 Ausente",
-  "Pedro": "🔴 Ocupado",
-  "Ana": "⚫ Offline"
+  Joao: "🟢 Online",
+  Maria: "🟡 Ausente",
+  Pedro: "🔴 Ocupado",
+  Ana: "⚫ Offline"
 };
 
 
-// Trocar contato
+// Abrir contato
 
-contatos.forEach(contato => {
+contatos.forEach((contato) => {
 
   contato.addEventListener("click", () => {
 
-    contatoAtual = contato.innerText.replace(/🟢|🟡|🔴|⚫/g, "").trim();
+    const nome = contato.dataset.nome;
+
+    contatoAtual = nome;
 
     mensagens.innerHTML = "";
 
     nomeContato.innerHTML = "💬 " + contatoAtual;
 
-    digitando.innerHTML =
-      statusContatos[contatoAtual] || "🟢 Online";
+    digitando.innerHTML = statusContatos[contatoAtual];
 
   });
 
 });
 
 
-// Seu status
+// Status do usuário
 
 status.addEventListener("change", () => {
 
@@ -63,50 +64,48 @@ texto.addEventListener("input", () => {
 
   } else {
 
-    digitando.innerHTML =
-    statusContatos[contatoAtual];
+    digitando.innerHTML = statusContatos[contatoAtual];
 
   }
 
 });
 
 
-// Enviar
+// Enviar mensagem
 
 function enviarMensagem(){
 
-const mensagem = texto.value.trim();
+  const mensagem = texto.value.trim();
 
-if(mensagem === "") return;
-
-
-const hora = new Date().toLocaleTimeString("pt-BR",{
-hour:"2-digit",
-minute:"2-digit"
-});
+  if(mensagem === "") return;
 
 
-const nova = document.createElement("div");
-
-nova.className="mensagem";
-
-
-nova.innerHTML = `
-<strong>${nome}</strong><br>
-${mensagem}
-<div class="hora">${hora}</div>
-<div class="visualizado">✔✔ Visualizado</div>
-`;
+  const hora = new Date().toLocaleTimeString("pt-BR", {
+    hour:"2-digit",
+    minute:"2-digit"
+  });
 
 
-mensagens.appendChild(nova);
+  const novaMensagem = document.createElement("div");
 
-texto.value="";
+  novaMensagem.className = "mensagem";
 
-digitando.innerHTML =
-statusContatos[contatoAtual];
 
-mensagens.scrollTop = mensagens.scrollHeight;
+  novaMensagem.innerHTML = `
+    <strong>${nomeUsuario}</strong><br>
+    ${mensagem}
+    <div class="hora">${hora}</div>
+    <div class="visualizado">✔✔ Visualizado</div>
+  `;
+
+
+  mensagens.appendChild(novaMensagem);
+
+  texto.value = "";
+
+  digitando.innerHTML = statusContatos[contatoAtual];
+
+  mensagens.scrollTop = mensagens.scrollHeight;
 
 }
 
@@ -114,26 +113,26 @@ mensagens.scrollTop = mensagens.scrollHeight;
 enviar.addEventListener("click", enviarMensagem);
 
 
-texto.addEventListener("keypress",(e)=>{
+texto.addEventListener("keypress", (e)=>{
 
-if(e.key==="Enter"){
-enviarMensagem();
-}
+  if(e.key === "Enter"){
+    enviarMensagem();
+  }
 
 });
 
 
-// Chamar atenção
+// Chamar atenção MSN
 
-chamar.addEventListener("click",()=>{
+chamar.addEventListener("click", ()=>{
 
-chat.classList.remove("tremendo");
+  chat.classList.remove("tremendo");
 
-void chat.offsetWidth;
+  void chat.offsetWidth;
 
-chat.classList.add("tremendo");
+  chat.classList.add("tremendo");
 
-alert("🔥 Ari chamou sua atenção!");
+  alert("🔥 Ari chamou sua atenção!");
 
 });
 
